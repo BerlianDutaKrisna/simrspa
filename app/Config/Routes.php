@@ -5,5 +5,5 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
-$routes->get('login', 'Login::index'); // Menampilkan form login
+$routes->get('/', 'Login::index'); // Menampilkan form login
+$routes->get('register', 'Login::register'); // Menampilkan form register
