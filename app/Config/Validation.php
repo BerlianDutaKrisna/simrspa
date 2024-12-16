@@ -41,4 +41,32 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+
+    /**
+     * Custom validation messages in Indonesian
+     *
+     * Here we define custom validation messages in Indonesian
+     */
+    public array $messages = [
+        'nama_user' => [
+            'required'   => 'Nama lengkap harus diisi.',
+            'min_length' => 'Nama lengkap minimal terdiri dari 3 karakter.',
+            'max_length' => 'Nama lengkap maksimal terdiri dari 255 karakter.'
+        ],
+        'username' => [
+            'required'   => 'Username harus diisi.',
+            'is_unique'  => 'Username sudah terdaftar, silakan pilih username lain.',
+            'min_length' => 'Username minimal terdiri dari 5 karakter.'
+        ],
+        'password' => [
+            'required'   => 'Password harus diisi.',
+            'min_length' => 'Password minimal terdiri dari 6 karakter.'
+        ],
+        'password2' => [
+            'matches'    => 'Password konfirmasi tidak cocok dengan password.'
+        ],
+        'status_user' => [
+            'required'   => 'Status pengguna harus dipilih.'
+        ]
+    ];
 }
