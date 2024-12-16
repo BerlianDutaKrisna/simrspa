@@ -5,11 +5,15 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Auth::index'); // Menampilkan form Auth
-$routes->get('login', 'Auth::index'); // Menampilkan form Auth
+// Route untuk Auth
+$routes->get('/', 'Auth::index'); // Menampilkan form login
+$routes->get('login', 'Auth::index'); // Menampilkan form login
+$routes->post('auth/login', 'Auth::login'); // Menangani form POST dari Auth
 $routes->get('register', 'Auth::register'); // Menampilkan form register
 $routes->post('auth/insert', 'Auth::insert'); // Menangani form POST dari register
-$routes->post('auth/save', 'Auth::save'); // Menangani form POST dari register
+$routes->get('/logout', 'Auth::logout');         // Menangani logout dan menghapus session
 
+// Route untuk Dashboard
+$routes->get('dashboard', 'Dashboard::index'); // Menampilkan halaman dashboard
 // Route untuk pengujian
 $routes->get('/test', 'Test::index');

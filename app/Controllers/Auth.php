@@ -21,19 +21,47 @@ class Auth extends BaseController
     {
         return view('login');  // Mengembalikan view login
     }
+    // Fungsi login
+    public function login()
+    {
+        // Validasi form
+        helper(['form']);
+        $this->request->getMethod() === 'post';
+            $username = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
+            // Cek apakah username ada di database
+            $user = $this->userModel->where('username', $username)->first();
+            // Cek password dan validasi login
+            if ($user && password_verify($password, $user['password_user'])) {
+                // Menyimpan data user ke session setelah login berhasil
+                session()->set('nama_user', $user['nama_user']);
+                session()->set('username', $user['username']); // Bisa juga menyimpan username
+                return redirect()->to('/dashboard'); // Redirect ke dashboard setelah login
+            } else {
+                return redirect()->back()->with('error', 'Username atau Password salah.');
+            }
+        }
+    // Fungsi logout
+    public function logout()
+    {
+        // Menghapus session yang terkait dengan user
+        session()->destroy(); // Menghapus semua session
+
+        // Redirect ke halaman login setelah logout
+        return redirect()->to('/login')->with('success', 'Anda telah logout.');
+    }
 
     // Menampilkan halaman registrasi
     public function register(): string
     {
         return view('register');  // Mengembalikan view registrasi
     }
-
     // Proses insert data pengguna baru (registrasi)
     public function insert()
     {
         helper(['form', 'url']);  // Memanggil helper form dan url untuk mempermudah validasi dan URL
         $validation = \Config\Services::validation();  // Menyiapkan layanan validasi bawaan CodeIgniter
-        $this->request->getVar() == 'post';  // Memastikan Var yang digunakan adalah POST
+        $this->request->getMethod() === 'post';  // Memastikan Var yang digunakan adalah POST
             // Menetapkan aturan validasi untuk form
             $validation->setRules([
                 'nama_user' => 'required',  // Nama harus diisi
