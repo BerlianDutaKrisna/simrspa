@@ -23,7 +23,7 @@
             <?php endif; ?>
 
             <!-- Form login -->
-            <form action="<?= base_url('auth/login'); ?>" method="post" class="user">
+            <form action="<?= base_url('auth/login'); ?>" method="POST" class="user">
                 <?= csrf_field(); ?> <!-- CSRF token untuk mencegah serangan CSRF -->
 
                 <!-- Input untuk Username -->

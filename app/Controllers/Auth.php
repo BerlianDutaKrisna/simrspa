@@ -26,7 +26,7 @@ class Auth extends BaseController
     {
         // Validasi form
         helper(['form']);
-        $this->request->getMethod() === 'post';
+        $this->request->getMethod() === 'POST';
             $username = $this->request->getPost('username');
             $password = $this->request->getPost('password');
             // Cek apakah username ada di database
@@ -34,8 +34,8 @@ class Auth extends BaseController
             // Cek password dan validasi login
             if ($user && password_verify($password, $user['password_user'])) {
                 // Menyimpan data user ke session setelah login berhasil
+                session()->set('id_user', $user['id_user']);
                 session()->set('nama_user', $user['nama_user']);
-                session()->set('username', $user['username']); // Bisa juga menyimpan username
                 return redirect()->to('/dashboard'); // Redirect ke dashboard setelah login
             } else {
                 return redirect()->back()->with('error', 'Username atau Password salah.');
@@ -61,7 +61,7 @@ class Auth extends BaseController
     {
         helper(['form', 'url']);  // Memanggil helper form dan url untuk mempermudah validasi dan URL
         $validation = \Config\Services::validation();  // Menyiapkan layanan validasi bawaan CodeIgniter
-        $this->request->getMethod() === 'post';  // Memastikan Var yang digunakan adalah POST
+        $this->request->getMethod() === 'POST';  // Memastikan Var yang digunakan adalah POST
             // Menetapkan aturan validasi untuk form
             $validation->setRules([
                 'nama_user' => 'required',  // Nama harus diisi

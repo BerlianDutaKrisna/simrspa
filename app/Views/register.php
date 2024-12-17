@@ -8,7 +8,7 @@
                 <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
             </div>
 
-            <form action="<?= base_url('/auth/insert') ?>" method="post" enctype="multipart/form-data" class="user">
+            <form action="<?= base_url('/auth/insert') ?>" method="POST" enctype="multipart/form-data" class="user">
                 <?= csrf_field(); ?> <!-- CSRF token untuk keamanan -->
                 <?php if (session()->getFlashdata('error')): ?>
                     <div class="alert alert-danger">
