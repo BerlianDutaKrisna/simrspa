@@ -16,7 +16,7 @@ class Dashboard extends BaseController
         $nama_user = session()->get('nama_user');
 
         // Mengirim data ke view untuk ditampilkan
-        return view('dashboard', [
+        return view('/dashboard/dashboard', [
             'id_user' => $id_user,
             'nama_user' => $nama_user
         ]);

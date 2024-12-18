@@ -19,7 +19,7 @@ class Auth extends BaseController
     // Menampilkan halaman login
     public function index(): string
     {
-        return view('login');  // Mengembalikan view login
+        return view('auth/login');  // Mengembalikan view login
     }
     // Fungsi login
     public function login()
@@ -54,7 +54,7 @@ class Auth extends BaseController
     // Menampilkan halaman registrasi
     public function register(): string
     {
-        return view('register');  // Mengembalikan view registrasi
+        return view('auth/register');  // Mengembalikan view registrasi
     }
     // Proses insert data pengguna baru (registrasi)
     public function insert()
