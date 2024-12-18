@@ -3,7 +3,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Tambah Pemeriksaan</h6>
     </div>
     <div class="card-body">
-        <form action="hasil_pencarian.php" method="post">
+        <form action="hasil_pencarian.php" method="POST">
             <div class="row">
                 <!-- Input dan tombol cari responsif -->
                 <div class="col-md-8 col-sm-12 mb-3">

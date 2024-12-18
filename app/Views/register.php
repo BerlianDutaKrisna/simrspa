@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     <select name="status_user" class="form-control" required>
-                        <option value="" disabled selected>Pilih Status User</option>
+                        <option value="Belum Dipilih" disabled selected>Pilih Status User</option>
                         <option value="Admin" <?= old('status_user') == 'Admin' ? 'selected' : ''; ?>>Admin</option>
                         <option value="Dokter" <?= old('status_user') == 'Dokter' ? 'selected' : ''; ?>>Dokter</option>
                         <option value="Analis" <?= old('status_user') == 'Analis' ? 'selected' : ''; ?>>Analis</option>

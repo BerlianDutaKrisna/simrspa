@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateUsersTable extends Migration
+class Users extends Migration
 {
     public function up()
     {
@@ -31,8 +31,8 @@ class CreateUsersTable extends Migration
             ],
             'status_user' => [
                 'type' => 'ENUM',
-                'constraint' => ['admin', 'analis', 'dokter'],  // Status bisa 'admin', 'analis', atau 'dokter'
-                'default' => 'admin',  // Default adalah 'admin'
+                'constraint' => ['Admin', 'Analis', 'Dokter', 'Belum Dipilih'],  // Status bisa 'admin', 'analis', atau 'dokter'
+                'default' => 'Belum Dipilih',  // Default adalah 'Belum Dipilih'
             ],
         ]);
         
