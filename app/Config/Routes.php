@@ -19,6 +19,8 @@ $routes->get('patient', 'Patient::index'); // Route untuk menampilkan halaman ut
 $routes->post('patient/searchPatient', 'Patient::searchPatient'); // Route untuk pencarian pasien
 $routes->post('patient/create', 'Patient::create'); // Route untuk membuat pasien baru
 
+// Route untuk Users
+$routes->get('/users', 'Users::index');
 
 // Route untuk pengujian
 $routes->get('/test', 'Test::index');

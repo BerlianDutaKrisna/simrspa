@@ -46,6 +46,10 @@ abstract class BaseController extends Controller
     /**
      * @return void
      */
+    protected $session;
+    protected $id_user;
+    protected $nama_user;
+
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Do Not Edit This Line
@@ -54,5 +58,17 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+
+        // Inisialisasi session
+        $this->session = \Config\Services::session();
+
+        // Ambil data session
+        $this->id_user = $this->session->get('id_user');
+        $this->nama_user = $this->session->get('nama_user');
+        // Redirect jika session tidak ditemukan (opsional)
+        if (!$this->id_user && service('uri')->getPath() !== 'login') {
+            header('Location: /login');
+            exit;
+        }
     }
 }
