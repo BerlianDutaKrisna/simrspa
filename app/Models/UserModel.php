@@ -6,15 +6,16 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    // Nama tabel yang digunakan
     protected $table = 'users';
-    // Primary Key yang digunakan
     protected $primaryKey = 'id_user';
-    // Kolom yang boleh diisi
-    protected $allowedFields = ['username', 'password_user', 'nama_user', 'status_user'];
-    // Return type data yang dikembalikan (array)
     protected $returnType = 'array';
-    // Menyimpan data pengguna baru
+    protected $allowedFields = [
+        'username',
+        'password_user',
+        'nama_user',
+        'status_user'];
+    
+    // Menyimpan data users baru
     public function insertUser($data)
     {
         // Pastikan data disimpan dengan benar

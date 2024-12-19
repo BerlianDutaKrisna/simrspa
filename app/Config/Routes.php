@@ -10,7 +10,6 @@ $routes->get('/', 'Auth::index'); // Menampilkan form login
 $routes->get('login', 'Auth::index'); // Menampilkan form login
 $routes->post('auth/login', 'Auth::login'); // Menangani form POST dari Auth
 $routes->get('register', 'Auth::register'); // Menampilkan form register
-$routes->post('auth/insert', 'Auth::insert'); // Menangani form POST dari register
 $routes->get('/logout', 'Auth::logout');         // Menangani logout dan menghapus session
 
 // Route untuk Dashboard
@@ -21,6 +20,11 @@ $routes->post('patient/create', 'Patient::create'); // Route untuk membuat pasie
 
 // Route untuk Users
 $routes->get('/users', 'Users::index');
+$routes->post('users/insert', 'Users::insert'); // Menangani form POST dari register user
 
+// Route untuk Patient
+$routes->get('patient', 'Patient::index');
+$routes->post('patient/searchPatient', 'Patient::searchPatient');
+$routes->post('patient/insert', 'Patient::insert');
 // Route untuk pengujian
 $routes->get('/test', 'Test::index');

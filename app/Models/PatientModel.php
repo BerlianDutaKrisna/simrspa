@@ -16,4 +16,28 @@ class PatientModel extends Model
         'jenis_kelamin_pasien',
         'status_pasien'
     ];
+    // Menyimpan data patient baru
+    public function insertPatient($data)
+    {
+        // Pastikan data disimpan dengan benar
+        try {
+            // Proses penyimpanan data menggunakan insert
+            $this->insert($data);
+
+            // Cek apakah ada error saat penyimpanan
+            if ($this->db->affectedRows() > 0) {
+                return true; // Berhasil menyimpan data
+            } else {
+                return false; // Gagal menyimpan data
+            }
+        } catch (\Exception $e) {
+            // Menangani error dan mengembalikan pesan error
+            return $e->getMessage();
+        }
+    }
+    // Mengecek apakah NORM sudah ada di database
+    public function checkNORMExists($norm_patient)
+    {
+        return $this->where('norm_patient', $norm_patient)->first(); // Cek apakah morm sudah ada di database
+    }
 }

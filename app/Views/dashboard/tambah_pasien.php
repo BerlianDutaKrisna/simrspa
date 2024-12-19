@@ -20,7 +20,8 @@
             </div>
             <div class="modal-body">
                 <!-- Form untuk Tambah Data Pasien -->
-                <form id="formAddPatient">
+                <form action="<?= base_url('patient/insert') ?>" method="POST">
+                <?= csrf_field() ?> <!-- Proteksi CSRF -->
                     <div class="form-group">
                         <label for="norm_pasien">Nomor Rekam Medis</label>
                         <input type="text" class="form-control" id="norm_pasien" name="norm_pasien" placeholder="Masukkan Nomor Rekam Medis" required>
