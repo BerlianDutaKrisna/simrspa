@@ -117,7 +117,9 @@
                 <!-- Elemen footer -->
                 <div class="footer">
                     <p>Terimakasih,</p>
-                    <br><br>
+                    <br>
+                    <img src="<?= base_url('assets/img/ttd_dr_ayu') ?>" alt="Tanda Tangan" style="width: 200px;">
+                    <br>
                     <p>(<?= $hpa[0]["nama_user_dokter_pemotongan"] ?? "" ?>)</p>
                     <br><br>
                     <div class="note">

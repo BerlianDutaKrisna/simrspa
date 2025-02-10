@@ -133,7 +133,7 @@
                 <td>Norm: <?= esc($hpa['norm_pasien'] ?? '') ?></td>
                 <td>Unit Asal: <?= esc($hpa['unit_asal'] ?? '') ?></td>
                 <td>Lokasi Spesimen: <?= esc($hpa['lokasi_spesimen'] ?? '') ?></td>
-                <td>Tanggal Hasil: <?= isset($hpa['tanggal_hasil']) ? date('d-m-Y', strtotime($hpa['tanggal_hasil'])) : ''; ?></td>
+                <td>Estimasi Hasil: <?= isset($hpa['tanggal_hasil']) ? date('d-m-Y', strtotime($hpa['tanggal_hasil'])) : ''; ?></td>
             </tr>
         </table>
 
@@ -151,7 +151,7 @@
                     <img src="<?= $hpa['foto_makroskopis_hpa'] !== null
                                         ? base_url('uploads/hpa/makroskopis/' . $hpa['foto_makroskopis_hpa'])
                                         : base_url('img/no_photo.jpg') ?>"
-                        width="100"
+                        width="200"
                         alt="Foto Makroskopis"
                         class="img-thumbnail"
                         id="fotoMakroskopis"
