@@ -41,7 +41,20 @@
                                 <td><?= esc($row['kode_hpa'] ?? 'Belum Diisi') ?></td>
                                 <td><?= esc($row['nama_pasien'] ?? 'Belum Diisi') ?></td>
                                 <td><?= esc($row['norm_pasien'] ?? 'Belum Diisi') ?></td>
-                                <td><?= esc($row['jenis_kelamin_pasien'] ?? 'Belum Diisi') ?></td>
+                                <td>
+                                    <?php
+                                    $jenis_kelamin = $row['jenis_kelamin_pasien'] ?? 'Belum Diisi';
+                                    $usia = '';
+
+                                    if (!empty($row['tanggal_lahir_pasien'])) {
+                                        $tanggal_lahir = new DateTime($row['tanggal_lahir_pasien']);
+                                        $hari_ini = new DateTime();
+                                        $usia = $hari_ini->diff($tanggal_lahir)->y;
+                                    }
+
+                                    echo esc($jenis_kelamin) . ($usia !== '' ? " / {$usia}" : '');
+                                    ?>
+                                </td>
                                 <td>
                                     <?= empty($row['tanggal_lahir_pasien']) ? 'Belum diisi' : esc(date('d-m-Y', strtotime($row['tanggal_lahir_pasien']))); ?>
                                 </td>
