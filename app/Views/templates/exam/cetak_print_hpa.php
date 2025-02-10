@@ -72,13 +72,34 @@
             </td>
         </tr>
         <tr>
-            <td width="700">&nbsp;</td>
-            <td align="center">
-                Terimakasih,
-                <p><br/><br/></p>
-                dr. Ayu Tyasmara Pratiwi, Sp.PA
+    <td width="700">&nbsp;</td>
+    <td>
+        <table>
+        <tr>
+            <td></td>
+            <td>
+                Surabaya, <?= date('d-m-Y') ?>
             </td>
         </tr>
+        <tr>
+                <!-- Kolom gambar -->
+                <td width="170" align="center">
+                    <img src="<?= base_url('img/ttd_dr_ayu.png') ?>" alt="Tanda Tangan" style="width: 150px;">
+                </td>
+                <!-- Kolom teks -->
+                <td style="vertical-align: middle;">
+                    <p style="margin: 0; font-size: 14px;">Dokumen ini telah ditandatangani secara elektronik oleh:</p>
+                    <p style="margin: 0; font-size: 20px;">Dokter Spesialis Patologi Anatomi,</p>
+                    <br>
+                    <br>
+                    <p style="margin: 0; font-size: 20px; font-weight: bold;">dr. AYU TYASMARA PRATIWI, Sp.PA</p>
+                    <p style="margin: 5px 0 0;">Penata</p>
+                    <p style="margin: 0;">NIP. 198407022009022014</p>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
     </table>
 </body>
 </html>
