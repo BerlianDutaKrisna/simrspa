@@ -72,23 +72,42 @@
             </td>
         </tr>
         <tr>
-    <td width="700">&nbsp;</td>
+    <td width="650">&nbsp;</td>
     <td>
         <table>
-        <tr>
-            <td></td>
-            <td>
-                Surabaya, <?= date('d-m-Y') ?>
-            </td>
-        </tr>
-        <tr>
+            <tr>
+                <td style="padding-bottom: 10px;"></td>
+                <td style="padding-bottom: 10px;">
+                <?php
+                $bulan = [
+                    'Januari',
+                    'Februari',
+                    'Maret',
+                    'April',
+                    'Mei',
+                    'Juni',
+                    'Juli',
+                    'Agustus',
+                    'September',
+                    'Oktober',
+                    'November',
+                    'Desember'
+                ];
+                $tanggal = date('d');
+                $bulanIndo = $bulan[date('n') - 1];
+                $tahun = date('Y');
+                ?>
+                Surabaya, <?= $tanggal . ' ' . $bulanIndo . ' ' . $tahun ?>
+                </td>
+            </tr>
+            <tr>
                 <!-- Kolom gambar -->
-                <td width="170" align="center">
-                    <img src="<?= base_url('img/ttd_dr_ayu.png') ?>" alt="Tanda Tangan" style="width: 150px;">
+                <td width="170" align="center" style="padding-right: 10px;">
+                    <img src="<?= base_url('img/ttd_dr_ayu.png') ?>" alt="Tanda Tangan" style="width: 200px;">
                 </td>
                 <!-- Kolom teks -->
                 <td style="vertical-align: middle;">
-                    <p style="margin: 0; font-size: 14px;">Dokumen ini telah ditandatangani secara elektronik oleh:</p>
+                    <p style="margin: 0; font-size: 14px;">Hasil lab ini telah ditandatangani secara elektronik oleh:</p>
                     <p style="margin: 0; font-size: 20px;">Dokter Spesialis Patologi Anatomi,</p>
                     <br>
                     <br>
