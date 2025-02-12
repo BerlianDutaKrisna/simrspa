@@ -475,6 +475,8 @@ class Exam extends BaseController
     }
 
     public function update_print_hpa($id_hpa){
+
+        date_default_timezone_set('Asia/Jakarta');
         $hpaModel = new HpaModel();
         $pemverifikasiModel = new PemverifikasiModel();
         $autorizedModel = new AutorizedModel();
