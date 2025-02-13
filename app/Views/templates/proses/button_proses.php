@@ -101,6 +101,8 @@
                                 statuses.status_penanaman === "Selesai Penanaman" ||
                                 statuses.status_pemotongan_tipis === "Selesai Pemotongan Tipis" ||
                                 statuses.status_pewarnaan === "Selesai Pewarnaan" ||
+                                statuses.status_pembacaan === "Belum Pembacaan" ||
+                                statuses.status_pembacaan === "Proses Pembacaan" ||
                                 statuses.status_pembacaan === "Selesai Pembacaan" ||
                                 statuses.status_penulisan === "Selesai Penulisan" ||
                                 statuses.status_pemverifikasi === "Selesai Pemverifikasi" ||

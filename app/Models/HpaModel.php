@@ -205,6 +205,7 @@ class HpaModel extends Model
             ->join('users AS user_pemverifikasi', 'pemverifikasi.id_user_pemverifikasi = user_pemverifikasi.id_user', 'left')
             ->join('users AS user_pencetakan', 'pencetakan.id_user_pencetakan = user_pencetakan.id_user', 'left')
             ->where('hpa.status_hpa !=', 'Selesai')
+            ->where('hpa.status_hpa !=', 'Autorized')
             ->get()
             ->getResultArray();
     }
