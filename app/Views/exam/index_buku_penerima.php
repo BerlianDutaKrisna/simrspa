@@ -3,10 +3,10 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Data HPA</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Buku Penerimaan Hasil</h6>
     </div>
     <div class="card-body">
-        <h1>Data HPA</h1>
+        <h1>Buku Penerimaan Hasil</h1>
         <a href="<?= base_url('/dashboard') ?>" class="btn btn-primary mb-3">Kembali</a>
 
         <div class="table-responsive">
