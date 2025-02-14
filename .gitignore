@@ -1,3 +1,4 @@
+public/uploads/hpa/makroskopis/
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
@@ -124,3 +125,4 @@ nb-configuration.xml
 
 /results/
 /phpunit*.xml
+

@@ -13,11 +13,11 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                         aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div> <!-- Header dropdown -->
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-header">Cetak Laporan HPA:</div> <!-- Header dropdown -->
+                        <a class="dropdown-item" href="<?= base_url('laporan_jumlah_pasien') ?>">Jumlah Pasien</a>
+                        <a class="dropdown-item" href="#">Evaluasi Pelayanan</a>
                         <div class="dropdown-divider"></div> <!-- Pemisah dalam dropdown -->
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Lainya</a>
                     </div>
                 </div>
             </div>
@@ -104,9 +104,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                         aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div> <!-- Header dropdown -->
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-header">Cetak Laporan Pemeriksaan:</div> <!-- Header dropdown -->
+                        <a class="dropdown-item" href="#">Laporan pemeriksaan HPA</a>
+                        <a class="dropdown-item" href="#">Buku Penerimaan</a>
                         <div class="dropdown-divider"></div> <!-- Pemisah dalam dropdown -->
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
