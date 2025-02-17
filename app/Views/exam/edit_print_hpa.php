@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <div class="col-sm-12">
                         <textarea class="form-control summernote_print" name="print_hpa" id="print_hpa" rows="5">
-                            <?= $hpa['print_hpa'] ?? '' ?>
+                            <font size="5" face="verdana"><?= $hpa['print_hpa'] ?? '' ?></font>
                         </textarea>
                     </div>
                 </div>
