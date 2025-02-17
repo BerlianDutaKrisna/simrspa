@@ -195,7 +195,7 @@
                                 <font size="5" face="verdana"><b>KESIMPULAN :</b> <?= $hpa['lokasi_spesimen'] ?? '' ?>, <?= $hpa['tindakan_spesimen'] ?? '' ?>:</b></font>
                             </div>
                             <div>
-                                <font size="5" face="verdana"><b><?= $hpa['hasil_hpa'] ?? '' ?></b></font>
+                                <font size="5" face="verdana"><b><?= strtoupper($hpa['hasil_hpa'] ?? '') ?></b></font>
                             </div>
                             <br>
                             <div>
