@@ -35,7 +35,6 @@ class pembacaan extends BaseController
             'nama_user' => session()->get('nama_user'),
         ];
         // Mengirim data ke view untuk ditampilkan
-
         return view('proses/pembacaan', $data); // Update view
     }
 
