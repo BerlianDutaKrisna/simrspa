@@ -71,4 +71,9 @@ class AutorizedModel extends Model // Update nama model
     {
         return $this->delete($id_autorized);
     }
+
+    public function countAutorized()
+    {
+        return $this->where('status_autorized !=', 'Selesai Authorized')->countAllResults();
+    }
 }
