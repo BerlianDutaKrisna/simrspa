@@ -91,7 +91,7 @@ class HpaModel extends Model
 
     public function countHpaProcessed()
     {
-        return $this->where('status_hpa !=', 'Sudah Diproses')->countAllResults();
+        return $this->where('status_hpa !=', 'Selesai')->countAllResults();
     }
     public function countPenerimaan()
     {
