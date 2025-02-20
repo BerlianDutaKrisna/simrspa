@@ -130,7 +130,7 @@ class Exam extends BaseController
         $id_pemotongan = $hpa['id_pemotongan'];
         // Ambil data pengguna dengan status "Dokter" dari tabel users
         $users = $userModel->where('status_user', 'Dokter')->findAll();
-        
+
 
         // Ambil data pemotongan berdasarkan id_pemotongan
         $pemotongan = $pemotonganModel->find($id_pemotongan);
@@ -807,9 +807,10 @@ class Exam extends BaseController
             ]);
 
             // Jika validasi gagal, kembalikan ke form dengan error
-            if (!$validation->run($this->request->getPost())) {
-                return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+            if (!$validation->run(['kode_hpa' => $this->request->getPost('kode_hpa')])) {
+                return redirect()->back()->withInput()->with('error', $validation->getErrors());
             }
+
 
             // Ambil data dari form
             $data = [
@@ -894,6 +895,7 @@ class Exam extends BaseController
             return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
     }
+
     public function delete()
     {
         // Mendapatkan data dari request

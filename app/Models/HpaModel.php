@@ -85,6 +85,7 @@ class HpaModel extends Model
             patient.*
         ')
             ->join('patient', 'patient.id_pasien = hpa.id_pasien', 'left')
+            ->orderBy('hpa.kode_hpa', 'ASC')
             ->get()
             ->getResultArray();
     }
@@ -95,7 +96,7 @@ class HpaModel extends Model
     }
     public function countPenerimaan()
     {
-        return $this->where('status_hpa =', 'Penerimaan')->countAllResults();
+        return $this->where('status_hpa =', 'Terdaftar')->countAllResults();
     }
     public function countPengirisan()
     {
