@@ -504,11 +504,16 @@ class Exam extends BaseController
                         'status_penulisan' => 'Selesai Penulisan',
                         'selesai_penulisan' => date('Y-m-d H:i:s'),
                     ]);
+
+                    // Ambil data dari form
                     $lokasi_spesimen = $this->request->getPost('lokasi_spesimen');
                     $diagnosa_klinik = $this->request->getPost('diagnosa_klinik');
                     $makroskopis_hpa = $this->request->getPost('makroskopis_hpa');
                     $mikroskopis_hpa = $this->request->getPost('mikroskopis_hpa');
+                    $tindakan_spesimen = $this->request->getPost('tindakan_spesimen');
                     $hasil_hpa = $this->request->getPost('hasil_hpa');
+
+                    // Simpan data lokasi, diagnosa, makroskopis, mikroskopis, hasil terlebih dahulu
                     $hpaModel->update($id_hpa, [
                         'lokasi_spesimen' => $lokasi_spesimen,
                         'diagnosa_klinik' => $diagnosa_klinik,
@@ -516,10 +521,90 @@ class Exam extends BaseController
                         'mikroskopis_hpa' => $mikroskopis_hpa,
                         'hasil_hpa' => $hasil_hpa,
                     ]);
-                    $print_hpa = $this->request->getPost('print_hpa');
+
+                    // Setelah semua data tersimpan, buat data print_hpa
+                    $print_hpa = '
+                    <table width="800pt" height="80">
+                        <tbody>
+                            <tr>
+                                <td style="border: none;" width="200pt">
+                                    <font size="5" face="verdana"><b>LOKASI</b></font>
+                                </td>
+                                <td style="border: none;" width="10pt">
+                                    <font size="5" face="verdana"><b>:</b><br></font>
+                                </td>
+                                <td style="border: none;" width="590pt">
+                                    <font size="5" face="verdana">
+                                        <b>' . htmlspecialchars($lokasi_spesimen) . '<br></b>
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;" width="200pt">
+                                    <font size="5" face="verdana"><b>DIAGNOSA KLINIK</b></font>
+                                </td>
+                                <td style="border: none;" width="10pt">
+                                    <font size="5" face="verdana"><b>:</b><br></font>
+                                </td>
+                                <td style="border: none;" width="590pt">
+                                    <font size="5" face="verdana"><b>' . htmlspecialchars($diagnosa_klinik) . '<br></b></font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: none;" width="200pt">
+                                    <font size="5" face="verdana"><b>ICD</b></font>
+                                </td>
+                                <td style="border: none;" width="10pt">
+                                    <font size="5" face="verdana"><b>:</b></font>
+                                </td>
+                                <td style="border: none;" width="590pt">
+                                    <font size="5" face="verdana"><br></font>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <font size="5" face="verdana"><b>LAPORAN PEMERIKSAAN:<br></b></font>
+                    <div>
+                        <font size="5" face="verdana"><b> MAKROSKOPIK :</b></font>
+                    </div>
+                    <div>
+                        <font size="5" face="verdana">' . nl2br(htmlspecialchars($makroskopis_hpa)) . '</font>
+                    </div>
+                    <br>
+                    <div>
+                        <font size="5" face="verdana"><b>MIKROSKOPIK :</b><br></font>
+                    </div>
+                    <div>
+                        <font size="5" face="verdana">' . nl2br(htmlspecialchars($mikroskopis_hpa)) . '</font>
+                    </div>
+                    <br>
+                    <div>
+                        <font size="5" face="verdana"><b>KESIMPULAN :</b> ' . htmlspecialchars($lokasi_spesimen) . ', ' . htmlspecialchars($tindakan_spesimen) . ':</b></font>
+                    </div>
+                    <div>
+                        <font size="5" face="verdana"><b>' . strtoupper(htmlspecialchars($hasil_hpa)) . '</b></font>
+                    </div>
+                    <br>
+                    <div>
+                        <font size="5" face="verdana"><b><br><br></b></font>
+                    </div>
+                    <div>
+                        <font size="3"><i>
+                            <font face="verdana">Ket : <br></font>
+                        </i></font>
+                    </div>
+                    <div>
+                        <font size="5" face="verdana">
+                            <font size="3">
+                                <i>Jaringan telah dilakukan fiksasi dengan formalin sehingga terjadi perubahan ukuran makroskopis</i>
+                            </font>
+                        </font>
+                    </div>';
+                    // Simpan print_hpa setelah semua data yang dibutuhkan telah ada
                     $hpaModel->update($id_hpa, [
                         'print_hpa' => $print_hpa,
                     ]);
+
                     return redirect()->to('exam/edit_penulisan/' . $id_hpa)->with('success', 'Data penulisan berhasil diperbarui.');
 
                 default:
