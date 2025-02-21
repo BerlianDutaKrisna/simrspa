@@ -684,6 +684,15 @@ class Exam extends BaseController
         // Ambil data HPA untuk mendapatkan nama file lama
         $hpa = $hpaModel->find($id_hpa);
 
+        if (!$hpa) {
+            return redirect()->back()->with('error', 'Data HPA tidak ditemukan.');
+        }
+    
+        // Ambil kode_hpa dan ekstrak nomor dari format "H.nomor/25"
+        $kode_hpa = $hpa['kode_hpa'];
+        preg_match('/H\.(\d+)\/\d+/', $kode_hpa, $matches);
+        $kode_hpa = isset($matches[1]) ? $matches[1] : '000';
+
         // Validasi input file
         $validation = \Config\Services::validation();
         $validation->setRules([
@@ -705,7 +714,7 @@ class Exam extends BaseController
 
         if ($file->isValid() && !$file->hasMoved()) {
             // Generate nama file baru berdasarkan waktu
-            $newFileName = date('HisdmY') . '.' . $file->getExtension();
+            $newFileName = $kode_hpa . date('dmY') . '.' . $file->getExtension();
 
             // Tentukan folder tujuan upload
             $uploadPath = ROOTPATH . 'public/uploads/hpa/makroskopis/';
