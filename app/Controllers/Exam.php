@@ -397,7 +397,7 @@ class Exam extends BaseController
             'id_user' => session()->get('id_user'),
             'nama_user' => session()->get('nama_user'),
         ];
-        
+
         return view('exam/edit_print_hpa', $data);
     }
 
@@ -687,7 +687,7 @@ class Exam extends BaseController
         if (!$hpa) {
             return redirect()->back()->with('error', 'Data HPA tidak ditemukan.');
         }
-    
+
         // Ambil kode_hpa dan ekstrak nomor dari format "H.nomor/25"
         $kode_hpa = $hpa['kode_hpa'];
         preg_match('/H\.(\d+)\/\d+/', $kode_hpa, $matches);
@@ -718,32 +718,53 @@ class Exam extends BaseController
 
             // Tentukan folder tujuan upload
             $uploadPath = ROOTPATH . 'public/uploads/hpa/makroskopis/';
+
             // Pastikan folder tujuan ada
             if (!is_dir($uploadPath)) {
-                mkdir($uploadPath, 0777, true); // Membuat folder jika belum ada
+                mkdir($uploadPath, 0777, true);
             }
 
             // Hapus file lama jika ada
             if (!empty($hpa['foto_makroskopis_hpa'])) {
                 $oldFilePath = $uploadPath . $hpa['foto_makroskopis_hpa'];
                 if (file_exists($oldFilePath)) {
-                    unlink($oldFilePath); // Hapus file lama
+                    unlink($oldFilePath);
                 }
             }
 
-            // Pindahkan file baru ke folder tujuan dengan nama baru
-            if ($file->move($uploadPath, $newFileName)) {
-                // Update nama file baru di database
-                $hpaModel->update($id_hpa, ['foto_makroskopis_hpa' => $newFileName]);
+            // Pindahkan file sementara ke folder tujuan
+            $tempPath = $file->getTempName();
+            $finalPath = $uploadPath . $newFileName;
 
-                // Berhasil, redirect dengan pesan sukses
-                return redirect()->back()->with('success', 'Foto makroskopis berhasil diunggah dan diperbarui.');
+            // Cek orientasi gambar dan putar jika perlu
+            list($width, $height) = getimagesize($tempPath);
+
+            if ($height > $width) {
+                // Jika portrait, putar 90 derajat agar landscape
+                $image = imagecreatefromstring(file_get_contents($tempPath));
+                $rotatedImage = imagerotate($image, -90, 0); // Rotasi 90 derajat ke kiri
+
+                // Simpan gambar sesuai format
+                if ($file->getExtension() === 'jpg' || $file->getExtension() === 'jpeg') {
+                    imagejpeg($rotatedImage, $finalPath, 90);
+                } elseif ($file->getExtension() === 'png') {
+                    imagepng($rotatedImage, $finalPath);
+                }
+
+                // Hapus dari memori
+                imagedestroy($image);
+                imagedestroy($rotatedImage);
             } else {
-                // Gagal memindahkan file
-                return redirect()->back()->with('error', 'Gagal mengunggah foto makroskopis.');
+                // Jika sudah landscape, langsung simpan
+                move_uploaded_file($tempPath, $finalPath);
             }
+
+            // Update nama file baru di database
+            $hpaModel->update($id_hpa, ['foto_makroskopis_hpa' => $newFileName]);
+
+            // Berhasil, redirect dengan pesan sukses
+            return redirect()->back()->with('success', 'Foto makroskopis berhasil diunggah dan diperbarui dalam orientasi landscape.');
         } else {
-            // Jika file tidak valid
             return redirect()->back()->with('error', 'File tidak valid atau tidak diunggah.');
         }
     }
